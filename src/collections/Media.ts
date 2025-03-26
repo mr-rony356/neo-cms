@@ -46,7 +46,7 @@ export const Media: CollectionConfig = {
           }
 
           // Get the public URL
-          const { data: urlData } = supabase.storage.from('media').getPublicUrl(fileName)
+          const { data: urlData } = supabase.storage.from('neo-cms').getPublicUrl(fileName)
 
           // Return the updated data with the URL
           return {
