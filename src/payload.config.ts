@@ -6,7 +6,7 @@ import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
-
+import { s3Storage } from '@payloadcms/storage-s3';
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import Pages from './collections/Pages'
@@ -35,6 +35,27 @@ export default buildConfig({
   sharp,
   plugins: [
     payloadCloudPlugin(),
+    s3Storage({
+      collections: {
+        media: {
+          disableLocalStorage: true,
+          disablePayloadAccessControl: true,
+          generateFileURL: (args: any) => {
+            return `${process.env.NEXT_PUBLIC_S3_HOSTNAME}/${args.filename}`;
+          },
+        },
+      },
+      bucket: process.env.S3_BUCKET as string,
+      config: {
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID as string,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY as string,
+        },
+        region: process.env.S3_REGION as string,
+        endpoint: process.env.S3_ENDPOINT as string,
+        forcePathStyle: true,
+      },
+    }),
     // storage-adapter-placeholder
   ],
 })
