@@ -6,6 +6,11 @@ export const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
     useAsTitle: 'title',
+    defaultColumns: ['title', 'slug', 'updatedAt'],
+    group: 'Content', // Group pages in the admin panel',
+  },
+  access: {
+    read: () => true,
   },
   labels: {
     singular: 'Page',
@@ -29,28 +34,6 @@ export const Pages: CollectionConfig = {
     },
 
     {
-      name: 'seo',
-      label: 'SEO',
-      type: 'group',
-      fields: [
-        {
-          name: 'title',
-          label: 'SEO Title',
-          type: 'text',
-        },
-        {
-          name: 'description',
-          label: 'SEO Description',
-          type: 'textarea',
-        },
-        {
-          name: 'keywords',
-          label: 'Keywords',
-          type: 'text',
-        },
-      ],
-    },
-    {
       name: 'isHomePage',
       label: 'Home Page',
       type: 'checkbox',
@@ -58,6 +41,25 @@ export const Pages: CollectionConfig = {
         position: 'sidebar',
       },
     },
+    {
+      name:'status',
+      label: 'Status',
+      type: 'select',
+      defaultValue: 'draft',
+      admin: {
+        position: 'sidebar',
+      },
+      options: [
+        {
+          label: 'Draft',
+          value: 'draft',
+        },
+        {
+          label: 'Published',
+          value: 'published',
+        },
+      ],
+    }
   ],
 }
 

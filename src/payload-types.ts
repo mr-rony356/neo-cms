@@ -70,6 +70,8 @@ export interface Config {
     users: User;
     media: Media;
     pages: Page;
+    header: Header;
+    services: Service;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,6 +81,8 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    header: HeaderSelect<false> | HeaderSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -162,13 +166,9 @@ export interface Page {
    * Auto-generated from title if left empty
    */
   slug?: string | null;
-  content?: HeroBlock[] | null;
-  seo?: {
-    title?: string | null;
-    description?: string | null;
-    keywords?: string | null;
-  };
+  content?: (HeroBlock | HowItWorks | Statistic)[] | null;
   isHomePage?: boolean | null;
+  status?: ('draft' | 'published') | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -183,6 +183,120 @@ export interface HeroBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'hero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "How It Works".
+ */
+export interface HowItWorks {
+  cards?:
+    | {
+        heading?: string | null;
+        subheading?: string | null;
+        cardImage: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'how-it-work';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Statistic".
+ */
+export interface Statistic {
+  cards?:
+    | {
+        total?: number | null;
+        subheading?: string | null;
+        /**
+         *  Please upload  SVG or PNG
+         */
+        cardIcon: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'statistic';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header".
+ */
+export interface Header {
+  id: number;
+  title?: string | null;
+  headerLogo: number | Media;
+  customerLogo?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: number;
+  title?: string | null;
+  /**
+   * Auto-generated from title if left empty
+   */
+  slug?: string | null;
+  description?: string | null;
+  serviceImage: number | Media;
+  benefits?:
+    | {
+        title?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  advantages?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  features?: {
+    description?: string | null;
+    images?:
+      | {
+          image: number | Media;
+          id?: string | null;
+        }[]
+      | null;
+    featureList?:
+      | {
+          title?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Please upload  at leatsr 4 images
+   */
+  inspirationImages?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Please enter the questions and answers in the JSON format
+   */
+  questions?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -202,6 +316,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'header';
+        value: number | Header;
+      } | null)
+    | ({
+        relationTo: 'services';
+        value: number | Service;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -289,15 +411,11 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         hero?: T | HeroBlockSelect<T>;
-      };
-  seo?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        keywords?: T;
+        'how-it-work'?: T | HowItWorksSelect<T>;
+        statistic?: T | StatisticSelect<T>;
       };
   isHomePage?: T;
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -311,6 +429,98 @@ export interface HeroBlockSelect<T extends boolean = true> {
   heroImage?: T;
   id?: T;
   blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "How It Works_select".
+ */
+export interface HowItWorksSelect {
+  cards?:
+    | boolean
+    | {
+        heading?: boolean;
+        subheading?: boolean;
+        cardImage?: boolean;
+        id?: boolean;
+      };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Statistic_select".
+ */
+export interface StatisticSelect<T extends boolean = true> {
+  cards?:
+    | T
+    | {
+        total?: T;
+        subheading?: T;
+        cardIcon?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header_select".
+ */
+export interface HeaderSelect<T extends boolean = true> {
+  title?: T;
+  headerLogo?: T;
+  customerLogo?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  serviceImage?: T;
+  benefits?:
+    | T
+    | {
+        title?: T;
+        id?: T;
+      };
+  advantages?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  features?:
+    | T
+    | {
+        description?: T;
+        images?:
+          | T
+          | {
+              image?: T;
+              id?: T;
+            };
+        featureList?:
+          | T
+          | {
+              title?: T;
+              id?: T;
+            };
+      };
+  inspirationImages?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  questions?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
