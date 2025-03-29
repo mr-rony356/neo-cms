@@ -17,9 +17,9 @@ export const Statistic: Block = {
           label: 'Total Count',
         },
         {
-          name: 'subheading',
+          name: 'title',
           type: 'text',
-          label: 'Subheading',
+          label: 'Title',
           required: false,
         },
         {
