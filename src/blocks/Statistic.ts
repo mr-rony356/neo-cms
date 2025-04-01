@@ -12,25 +12,49 @@ export const Statistic: Block = {
       maxRows: 3,
       fields: [
         {
-          name: 'total',
-          type: 'number',
-          label: 'Total Count',
-        },
-        {
-          name: 'title',
-          type: 'text',
-          label: 'Title',
-          required: false,
-        },
-        {
-          name: 'cardIcon',
-          type: 'upload',
-          label: 'Card Image',
-          relationTo: 'media',
-          admin: {
-            description: ' Please upload  SVG or PNG',
-          },
-          required: true,
+          type: 'tabs',
+          tabs: [
+            {
+              label: 'Content',
+              fields: [
+                {
+                  name: 'total',
+                  type: 'number',
+                  label: 'Total Count',
+                },
+                {
+                  name: 'title',
+                  type: 'text',
+                  label: 'Title',
+                  required: false,
+                },
+                {
+                  name: 'cardIcon',
+                  type: 'upload',
+                  label: 'Card Image',
+                  relationTo: 'media',
+                  admin: {
+                    description: 'Please upload SVG or PNG',
+                  },
+                  required: true,
+                },
+              ],
+            },
+            {
+              label: 'Appearance',
+              fields: [
+                {
+                  name: 'backgroundColor',
+                  type: 'text',
+                  label: 'Background Color',
+                  admin: {
+                    description: 'Enter a color value (e.g., #FFFFFF)',
+                  },
+                  required: false,
+                },
+              ],
+            },
+          ],
         },
       ],
     },

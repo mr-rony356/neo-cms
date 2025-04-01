@@ -5,6 +5,7 @@ export const Header: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     group: 'Header',
+    defaultColumns: ['title','updatedAt'],
   },
 access: {
     read: () => true,

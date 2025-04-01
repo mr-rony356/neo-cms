@@ -26,9 +26,16 @@ export const Services: CollectionConfig = {
       label: 'Description',
     },
     {
+      name: 'serviceIcon',
+      type: 'upload',
+      label: 'Service Icon',
+      relationTo: 'media',
+    },
+
+    {
       name: 'serviceImage',
       type: 'upload',
-      label: 'Image',
+      label: 'Service Image',
       relationTo: 'media',
       required: true,
     },
