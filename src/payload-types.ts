@@ -72,6 +72,7 @@ export interface Config {
     pages: Page;
     header: Header;
     services: Service;
+    footer: Footer;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -83,6 +84,7 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
+    footer: FooterSelect<false> | FooterSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -166,7 +168,7 @@ export interface Page {
    * Auto-generated from title if left empty
    */
   slug?: string | null;
-  content?: (HeroBlock | Workflow | Statistic)[] | null;
+  content?: (HeroBlock | Workflow | Statistic | HTMLBlock)[] | null;
   isHomePage?: boolean | null;
   status?: ('draft' | 'published') | null;
   updatedAt: string;
@@ -227,6 +229,16 @@ export interface Statistic {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HTMLBlock".
+ */
+export interface HTMLBlock {
+  html?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'htmlblock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header".
  */
 export interface Header {
@@ -234,6 +246,7 @@ export interface Header {
   title?: string | null;
   headerLogo: number | Media;
   customerLogo?: (number | null) | Media;
+  status?: ('active' | 'inactive') | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -305,6 +318,26 @@ export interface Service {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: number;
+  title?: string | null;
+  footerLogo: number | Media;
+  footerLinks?:
+    | {
+        linkText?: string | null;
+        linkURL?: (number | null) | Page;
+        id?: string | null;
+      }[]
+    | null;
+  footerCopyright?: string | null;
+  status?: ('active' | 'inactive') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -329,6 +362,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'services';
         value: number | Service;
+      } | null)
+    | ({
+        relationTo: 'footer';
+        value: number | Footer;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -418,6 +455,7 @@ export interface PagesSelect<T extends boolean = true> {
         hero?: T | HeroBlockSelect<T>;
         workflow?: T | WorkflowSelect<T>;
         statistic?: T | StatisticSelect<T>;
+        htmlblock?: T | HTMLBlockSelect<T>;
       };
   isHomePage?: T;
   status?: T;
@@ -470,12 +508,22 @@ export interface StatisticSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HTMLBlock_select".
+ */
+export interface HTMLBlockSelect<T extends boolean = true> {
+  html?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
   title?: T;
   headerLogo?: T;
   customerLogo?: T;
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -526,6 +574,25 @@ export interface ServicesSelect<T extends boolean = true> {
         id?: T;
       };
   questions?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  title?: T;
+  footerLogo?: T;
+  footerLinks?:
+    | T
+    | {
+        linkText?: T;
+        linkURL?: T;
+        id?: T;
+      };
+  footerCopyright?: T;
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }

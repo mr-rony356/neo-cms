@@ -1,18 +1,18 @@
 import { CollectionConfig } from 'payload'
 
-export const Header: CollectionConfig = {
-  slug: 'header',
+export const Footer: CollectionConfig = {
+  slug: 'footer',
   admin: {
     useAsTitle: 'title',
     group: 'Navigation',
-    defaultColumns: ['title','updatedAt','status'],
+    defaultColumns: ['title', 'updatedAt', 'status'],
   },
-access: {
+  access: {
     read: () => true,
     create: () => true,
     update: () => true,
     delete: () => true,
-    },
+  },
   fields: [
     {
       name: 'title',
@@ -20,17 +20,34 @@ access: {
       type: 'text',
     },
     {
-      name: 'headerLogo',
+      name: 'footerLogo',
       label: 'Logo',
       type: 'upload',
       relationTo: 'media',
       required: true,
     },
     {
-      name: 'customerLogo',
-      label: 'Customer Logo',
-      type: 'upload',
-      relationTo: 'media',
+      name: 'footerLinks',
+      label: 'Links',
+      type: 'array',
+      fields: [
+        {
+          name: 'linkText',
+          label: 'Link Text',
+          type: 'text',
+        },
+        {
+          name: 'linkURL',
+          label: 'Link URL',
+          relationTo: 'pages',
+          type: 'relationship',
+        },
+      ],
+    },
+    {
+      name: 'footerCopyright',
+      label: 'Copyright Text',
+      type: 'text',
     },
     {
       name: 'status',

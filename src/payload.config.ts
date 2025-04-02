@@ -12,7 +12,7 @@ import { Media } from './collections/Media'
 import Pages from './collections/Pages'
 import { Header } from './collections/Header'
 import { Services } from './collections/Services'
-
+import { Footer } from './collections/Footer'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -23,7 +23,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Pages,Header,Services], 
+  collections: [Users, Media, Pages,Header,Services,Footer], 
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

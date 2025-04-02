@@ -1,4 +1,5 @@
 import { Hero } from './Hero'
 import { Statistic } from './Statistic'
 import { Workflow } from './Workflow'
-export const blocks = [Hero, Workflow, Statistic]
+import { Htmlblock } from './Htmlblock'
+export const blocks = [Hero, Workflow, Statistic, Htmlblock]
