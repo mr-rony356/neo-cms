@@ -262,6 +262,9 @@ export interface Service {
    */
   slug?: string | null;
   description?: string | null;
+  heroImage?: (number | null) | Media;
+  heroHeading?: string | null;
+  heroSubHeading?: string | null;
   serviceIcon?: (number | null) | Media;
   serviceImage: number | Media;
   benefits?:
@@ -535,6 +538,9 @@ export interface ServicesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   description?: T;
+  heroImage?: T;
+  heroHeading?: T;
+  heroSubHeading?: T;
   serviceIcon?: T;
   serviceImage?: T;
   benefits?:
