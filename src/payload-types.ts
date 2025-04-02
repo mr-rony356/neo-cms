@@ -304,6 +304,15 @@ export interface Service {
         id?: string | null;
       }[]
     | null;
+  testimonials?:
+    | {
+        name?: string | null;
+        image?: (number | null) | Media;
+        testimonial?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  content?: (HeroBlock | Workflow | Statistic | HTMLBlock)[] | null;
   /**
    * Please enter the questions and answers in the JSON format
    */
@@ -578,6 +587,22 @@ export interface ServicesSelect<T extends boolean = true> {
     | {
         image?: T;
         id?: T;
+      };
+  testimonials?:
+    | T
+    | {
+        name?: T;
+        image?: T;
+        testimonial?: T;
+        id?: T;
+      };
+  content?:
+    | T
+    | {
+        hero?: T | HeroBlockSelect<T>;
+        workflow?: T | WorkflowSelect<T>;
+        statistic?: T | StatisticSelect<T>;
+        htmlblock?: T | HTMLBlockSelect<T>;
       };
   questions?: T;
   updatedAt?: T;

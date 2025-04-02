@@ -1,3 +1,4 @@
+import { blocks } from '@/blocks/registerBlocks'
 import createSlugField from '@/fields/slug'
 import { CollectionConfig } from 'payload'
 
@@ -140,7 +141,36 @@ export const Services: CollectionConfig = {
         },
       ],
     },
-
+    {
+      name: 'testimonials',
+      type: 'array',
+      label: 'Testimonials',
+      fields: [
+        {
+          name: 'name',
+          type: 'text',
+          label: 'Name',
+        },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Image',
+        },
+        {
+          name: 'testimonial',
+          type: 'text',
+        },
+      ],
+    },
+    {
+      name: 'content',
+      type: 'blocks',
+      minRows: 1,
+      maxRows: 999,
+      blocks: blocks,
+    },
+    
     {
       name: 'questions',
       type: 'json',
