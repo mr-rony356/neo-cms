@@ -168,7 +168,57 @@ export interface Page {
    * Auto-generated from title if left empty
    */
   slug?: string | null;
-  content?: (HeroBlock | Workflow | Statistic | HTMLBlock)[] | null;
+  content?:
+    | (
+        | HeroBlock
+        | Workflow
+        | Statistic
+        | HTMLBlock
+        | {
+            text?: string | null;
+            textAlign?: ('left' | 'right' | 'center') | null;
+            fontSize?: number | null;
+            fontWeight?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'text';
+          }
+        | {
+            heading?: string | null;
+            subheading?: string | null;
+            image?: (number | null) | Media;
+            rounded?: boolean | null;
+            textAlign?: ('left' | 'right' | 'center') | null;
+            imagePosition?: ('left' | 'bottom') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'textImage';
+          }
+        | ImageBlock
+        | ManyImagesBlock
+        | {
+            title: string;
+            sections?:
+              | {
+                  sectionTitle: string;
+                  options?:
+                    | {
+                        image: number | Media;
+                        label: string;
+                        link?: (number | null) | Page;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  showMoreButton?: boolean | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'card';
+          }
+      )[]
+    | null;
   isHomePage?: boolean | null;
   status?: ('draft' | 'published') | null;
   updatedAt: string;
@@ -236,6 +286,32 @@ export interface HTMLBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'htmlblock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageBlock".
+ */
+export interface ImageBlock {
+  image?: (number | null) | Media;
+  rounded?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'image';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ManyImagesBlock".
+ */
+export interface ManyImagesBlock {
+  images?:
+    | {
+        image?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'manyImages';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -312,7 +388,57 @@ export interface Service {
         id?: string | null;
       }[]
     | null;
-  content?: (HeroBlock | Workflow | Statistic | HTMLBlock)[] | null;
+  content?:
+    | (
+        | HeroBlock
+        | Workflow
+        | Statistic
+        | HTMLBlock
+        | {
+            text?: string | null;
+            textAlign?: ('left' | 'right' | 'center') | null;
+            fontSize?: number | null;
+            fontWeight?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'text';
+          }
+        | {
+            heading?: string | null;
+            subheading?: string | null;
+            image?: (number | null) | Media;
+            rounded?: boolean | null;
+            textAlign?: ('left' | 'right' | 'center') | null;
+            imagePosition?: ('left' | 'bottom') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'textImage';
+          }
+        | ImageBlock
+        | ManyImagesBlock
+        | {
+            title: string;
+            sections?:
+              | {
+                  sectionTitle: string;
+                  options?:
+                    | {
+                        image: number | Media;
+                        label: string;
+                        link?: (number | null) | Page;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  showMoreButton?: boolean | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'card';
+          }
+      )[]
+    | null;
   /**
    * Please enter the questions and answers in the JSON format
    */
@@ -468,6 +594,52 @@ export interface PagesSelect<T extends boolean = true> {
         workflow?: T | WorkflowSelect<T>;
         statistic?: T | StatisticSelect<T>;
         htmlblock?: T | HTMLBlockSelect<T>;
+        text?:
+          | T
+          | {
+              text?: T;
+              textAlign?: T;
+              fontSize?: T;
+              fontWeight?: T;
+              id?: T;
+              blockName?: T;
+            };
+        textImage?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              image?: T;
+              rounded?: T;
+              textAlign?: T;
+              imagePosition?: T;
+              id?: T;
+              blockName?: T;
+            };
+        image?: T | ImageBlockSelect<T>;
+        manyImages?: T | ManyImagesBlockSelect<T>;
+        card?:
+          | T
+          | {
+              title?: T;
+              sections?:
+                | T
+                | {
+                    sectionTitle?: T;
+                    options?:
+                      | T
+                      | {
+                          image?: T;
+                          label?: T;
+                          link?: T;
+                          id?: T;
+                        };
+                    showMoreButton?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
   isHomePage?: T;
   status?: T;
@@ -524,6 +696,30 @@ export interface StatisticSelect<T extends boolean = true> {
  */
 export interface HTMLBlockSelect<T extends boolean = true> {
   html?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageBlock_select".
+ */
+export interface ImageBlockSelect<T extends boolean = true> {
+  image?: T;
+  rounded?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ManyImagesBlock_select".
+ */
+export interface ManyImagesBlockSelect<T extends boolean = true> {
+  images?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -603,6 +799,52 @@ export interface ServicesSelect<T extends boolean = true> {
         workflow?: T | WorkflowSelect<T>;
         statistic?: T | StatisticSelect<T>;
         htmlblock?: T | HTMLBlockSelect<T>;
+        text?:
+          | T
+          | {
+              text?: T;
+              textAlign?: T;
+              fontSize?: T;
+              fontWeight?: T;
+              id?: T;
+              blockName?: T;
+            };
+        textImage?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              image?: T;
+              rounded?: T;
+              textAlign?: T;
+              imagePosition?: T;
+              id?: T;
+              blockName?: T;
+            };
+        image?: T | ImageBlockSelect<T>;
+        manyImages?: T | ManyImagesBlockSelect<T>;
+        card?:
+          | T
+          | {
+              title?: T;
+              sections?:
+                | T
+                | {
+                    sectionTitle?: T;
+                    options?:
+                      | T
+                      | {
+                          image?: T;
+                          label?: T;
+                          link?: T;
+                          id?: T;
+                        };
+                    showMoreButton?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
   questions?: T;
   updatedAt?: T;
