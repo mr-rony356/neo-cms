@@ -451,6 +451,7 @@ export interface Service {
     | number
     | boolean
     | null;
+  status?: ('draft' | 'published') | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -465,7 +466,7 @@ export interface Footer {
   footerLinks?:
     | {
         linkText?: string | null;
-        linkURL?: (number | null) | Page;
+        URL?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -847,6 +848,7 @@ export interface ServicesSelect<T extends boolean = true> {
             };
       };
   questions?: T;
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -861,7 +863,7 @@ export interface FooterSelect<T extends boolean = true> {
     | T
     | {
         linkText?: T;
-        linkURL?: T;
+        URL?: T;
         id?: T;
       };
   footerCopyright?: T;

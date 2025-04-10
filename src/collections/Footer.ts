@@ -37,10 +37,9 @@ export const Footer: CollectionConfig = {
           type: 'text',
         },
         {
-          name: 'linkURL',
+          name: 'URL',
           label: 'Link URL',
-          relationTo: 'pages',
-          type: 'relationship',
+          type: 'text',
         },
       ],
     },

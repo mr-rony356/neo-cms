@@ -6,7 +6,7 @@ export const Services: CollectionConfig = {
   slug: 'services',
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'slug', 'updatedAt'],
+    defaultColumns: ['title', 'slug', 'updatedAt', 'status'],
   },
   access: {
     read: () => true,
@@ -170,13 +170,26 @@ export const Services: CollectionConfig = {
       maxRows: 999,
       blocks: blocks,
     },
-    
+
     {
       name: 'questions',
       type: 'json',
       label: 'Questions',
       admin: {
         description: 'Please enter the questions and answers in the JSON format',
+      },
+    },
+    {
+      name: 'status',
+      type: 'select',
+      label: 'Status',
+      defaultValue: 'draft',
+      options: [
+        { label: 'Draft', value: 'draft' },
+        { label: 'Published', value: 'published' },
+      ],
+      admin: {
+        position: 'sidebar',
       },
     },
   ],
