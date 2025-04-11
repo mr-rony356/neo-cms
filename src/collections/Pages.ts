@@ -59,7 +59,33 @@ export const Pages: CollectionConfig = {
           value: 'published',
         },
       ],
-    }
+    },
+    {
+      name: 'seo',
+      type: 'group',
+      label: 'SEO Metadata',
+      admin: {
+        position: 'sidebar',
+      },
+      fields: [
+        {
+          name: 'metaTitle',
+          type: 'text',
+          label: 'Meta Title',
+        },
+        {
+          name: 'metaDescription',
+          type: 'textarea',
+          label: 'Meta Description',
+        },
+        {
+          name: 'metaKeywords',
+          type: 'text',
+          label: 'Meta Keywords',
+        },
+      ],
+    },
+
   ],
 }
 

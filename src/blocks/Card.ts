@@ -11,6 +11,15 @@ export const Card: Block = {
       required: true,
     },
     {
+      name: 'backgroundColor',
+      type: 'text',
+      label: 'Background Color',
+      admin: {
+        description: 'Enter a color value (e.g., #FFFFFF)',
+      },
+      required: false,
+    },
+    {
       name: 'sections',
       type: 'array',
       label: 'Option Sections',

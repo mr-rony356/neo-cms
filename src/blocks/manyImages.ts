@@ -1,4 +1,4 @@
-import { Block } from "payload";
+import { Block } from 'payload'
 
 export const manyImages: Block = {
   slug: 'manyImages',
@@ -16,6 +16,15 @@ export const manyImages: Block = {
           label: 'Image',
         },
       ],
+    },
+    {
+      name: 'backgroundColor',
+      type: 'text',
+      label: 'Background Color',
+      admin: {
+        description: 'Enter a color value (e.g., #FFFFFF)',
+      },
+      required: false,
     },
   ],
 }

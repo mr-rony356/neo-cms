@@ -179,6 +179,10 @@ export interface Page {
             textAlign?: ('left' | 'right' | 'center') | null;
             fontSize?: number | null;
             fontWeight?: number | null;
+            /**
+             * Enter a color value (e.g., #FFFFFF)
+             */
+            backgroundColor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'text';
@@ -190,6 +194,10 @@ export interface Page {
             rounded?: boolean | null;
             textAlign?: ('left' | 'right' | 'center') | null;
             imagePosition?: ('left' | 'bottom') | null;
+            /**
+             * Enter a color value (e.g., #FFFFFF)
+             */
+            backgroundColor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'textImage';
@@ -198,6 +206,10 @@ export interface Page {
         | ManyImagesBlock
         | {
             title: string;
+            /**
+             * Enter a color value (e.g., #FFFFFF)
+             */
+            backgroundColor?: string | null;
             sections?:
               | {
                   sectionTitle: string;
@@ -221,6 +233,11 @@ export interface Page {
     | null;
   isHomePage?: boolean | null;
   status?: ('draft' | 'published') | null;
+  seo?: {
+    metaTitle?: string | null;
+    metaDescription?: string | null;
+    metaKeywords?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -249,6 +266,10 @@ export interface Workflow {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Enter a color value (e.g., #FFFFFF)
+   */
+  backgroundColor?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'workflow';
@@ -283,6 +304,10 @@ export interface Statistic {
  */
 export interface HTMLBlock {
   html?: string | null;
+  /**
+   * Enter a color value (e.g., #FFFFFF)
+   */
+  backgroundColor?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'htmlblock';
@@ -294,6 +319,10 @@ export interface HTMLBlock {
 export interface ImageBlock {
   image?: (number | null) | Media;
   rounded?: boolean | null;
+  /**
+   * Enter a color value (e.g., #FFFFFF)
+   */
+  backgroundColor?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'image';
@@ -309,6 +338,10 @@ export interface ManyImagesBlock {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Enter a color value (e.g., #FFFFFF)
+   */
+  backgroundColor?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'manyImages';
@@ -399,6 +432,10 @@ export interface Service {
             textAlign?: ('left' | 'right' | 'center') | null;
             fontSize?: number | null;
             fontWeight?: number | null;
+            /**
+             * Enter a color value (e.g., #FFFFFF)
+             */
+            backgroundColor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'text';
@@ -410,6 +447,10 @@ export interface Service {
             rounded?: boolean | null;
             textAlign?: ('left' | 'right' | 'center') | null;
             imagePosition?: ('left' | 'bottom') | null;
+            /**
+             * Enter a color value (e.g., #FFFFFF)
+             */
+            backgroundColor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'textImage';
@@ -418,6 +459,10 @@ export interface Service {
         | ManyImagesBlock
         | {
             title: string;
+            /**
+             * Enter a color value (e.g., #FFFFFF)
+             */
+            backgroundColor?: string | null;
             sections?:
               | {
                   sectionTitle: string;
@@ -452,6 +497,11 @@ export interface Service {
     | boolean
     | null;
   status?: ('draft' | 'published') | null;
+  seo?: {
+    metaTitle?: string | null;
+    metaDescription?: string | null;
+    metaKeywords?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -602,6 +652,7 @@ export interface PagesSelect<T extends boolean = true> {
               textAlign?: T;
               fontSize?: T;
               fontWeight?: T;
+              backgroundColor?: T;
               id?: T;
               blockName?: T;
             };
@@ -614,6 +665,7 @@ export interface PagesSelect<T extends boolean = true> {
               rounded?: T;
               textAlign?: T;
               imagePosition?: T;
+              backgroundColor?: T;
               id?: T;
               blockName?: T;
             };
@@ -623,6 +675,7 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               title?: T;
+              backgroundColor?: T;
               sections?:
                 | T
                 | {
@@ -644,6 +697,13 @@ export interface PagesSelect<T extends boolean = true> {
       };
   isHomePage?: T;
   status?: T;
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        metaKeywords?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -671,6 +731,7 @@ export interface WorkflowSelect<T extends boolean = true> {
         cardImage?: T;
         id?: T;
       };
+  backgroundColor?: T;
   id?: T;
   blockName?: T;
 }
@@ -697,6 +758,7 @@ export interface StatisticSelect<T extends boolean = true> {
  */
 export interface HTMLBlockSelect<T extends boolean = true> {
   html?: T;
+  backgroundColor?: T;
   id?: T;
   blockName?: T;
 }
@@ -707,6 +769,7 @@ export interface HTMLBlockSelect<T extends boolean = true> {
 export interface ImageBlockSelect<T extends boolean = true> {
   image?: T;
   rounded?: T;
+  backgroundColor?: T;
   id?: T;
   blockName?: T;
 }
@@ -721,6 +784,7 @@ export interface ManyImagesBlockSelect<T extends boolean = true> {
         image?: T;
         id?: T;
       };
+  backgroundColor?: T;
   id?: T;
   blockName?: T;
 }
@@ -807,6 +871,7 @@ export interface ServicesSelect<T extends boolean = true> {
               textAlign?: T;
               fontSize?: T;
               fontWeight?: T;
+              backgroundColor?: T;
               id?: T;
               blockName?: T;
             };
@@ -819,6 +884,7 @@ export interface ServicesSelect<T extends boolean = true> {
               rounded?: T;
               textAlign?: T;
               imagePosition?: T;
+              backgroundColor?: T;
               id?: T;
               blockName?: T;
             };
@@ -828,6 +894,7 @@ export interface ServicesSelect<T extends boolean = true> {
           | T
           | {
               title?: T;
+              backgroundColor?: T;
               sections?:
                 | T
                 | {
@@ -849,6 +916,13 @@ export interface ServicesSelect<T extends boolean = true> {
       };
   questions?: T;
   status?: T;
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        metaKeywords?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

@@ -1,4 +1,4 @@
-import { Block } from "payload";
+import { Block } from 'payload'
 
 export const Image: Block = {
   slug: 'image',
@@ -14,6 +14,15 @@ export const Image: Block = {
       name: 'rounded',
       type: 'checkbox',
       label: 'Rounded',
+    },
+    {
+      name: 'backgroundColor',
+      type: 'text',
+      label: 'Background Color',
+      admin: {
+        description: 'Enter a color value (e.g., #FFFFFF)',
+      },
+      required: false,
     },
   ],
 }
