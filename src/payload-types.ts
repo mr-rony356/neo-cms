@@ -354,7 +354,6 @@ export interface Header {
   id: number;
   title?: string | null;
   headerLogo: number | Media;
-  customerLogo?: (number | null) | Media;
   status?: ('active' | 'inactive') | null;
   updatedAt: string;
   createdAt: string;
@@ -371,6 +370,10 @@ export interface Service {
    */
   slug?: string | null;
   description?: string | null;
+  /**
+   * Please upload a logo for the customer
+   */
+  customerLogo?: (number | null) | Media;
   heroImage?: (number | null) | Media;
   heroHeading?: string | null;
   heroSubHeading?: string | null;
@@ -795,7 +798,6 @@ export interface ManyImagesBlockSelect<T extends boolean = true> {
 export interface HeaderSelect<T extends boolean = true> {
   title?: T;
   headerLogo?: T;
-  customerLogo?: T;
   status?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -808,6 +810,7 @@ export interface ServicesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   description?: T;
+  customerLogo?: T;
   heroImage?: T;
   heroHeading?: T;
   heroSubHeading?: T;

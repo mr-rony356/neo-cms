@@ -27,12 +27,6 @@ access: {
       required: true,
     },
     {
-      name: 'customerLogo',
-      label: 'Customer Logo',
-      type: 'upload',
-      relationTo: 'media',
-    },
-    {
       name: 'status',
       label: 'Status',
       type: 'select',

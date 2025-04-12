@@ -27,6 +27,17 @@ export const Services: CollectionConfig = {
       label: 'Description',
     },
     {
+      name: 'customerLogo',
+      label: 'Customer Logo',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Please upload a logo for the customer',
+        position: 'sidebar',
+      }
+    },
+
+    {
       name: 'heroImage',
       type: 'upload',
       label: 'Hero Image',
