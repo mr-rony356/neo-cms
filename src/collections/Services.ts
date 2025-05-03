@@ -204,6 +204,14 @@ export const Services: CollectionConfig = {
       },
     },
     {
+      name: 'contactPhone',
+      type: 'text',
+      label: 'Contact Phone',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
       name: 'seo',
       type: 'group',
       label: 'SEO Metadata',

@@ -500,6 +500,7 @@ export interface Service {
     | boolean
     | null;
   status?: ('draft' | 'published') | null;
+  contactPhone?: string | null;
   seo?: {
     metaTitle?: string | null;
     metaDescription?: string | null;
@@ -919,6 +920,7 @@ export interface ServicesSelect<T extends boolean = true> {
       };
   questions?: T;
   status?: T;
+  contactPhone?: T;
   seo?:
     | T
     | {
