@@ -206,7 +206,7 @@ export const Services: CollectionConfig = {
     {
       name: 'contactPhone',
       type: 'text',
-      label: 'Contact Phone',
+      label: 'Contact Phone Text',
       admin: {
         position: 'sidebar',
       },
