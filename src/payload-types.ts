@@ -342,6 +342,7 @@ export interface ManyImagesBlock {
    * Enter a color value (e.g., #FFFFFF)
    */
   backgroundColor?: string | null;
+  isTopPosition?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'manyImages';
@@ -379,20 +380,27 @@ export interface Service {
   heroSubHeading?: string | null;
   serviceIcon?: (number | null) | Media;
   serviceImage: number | Media;
-  benefits?:
-    | {
-        title?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  advantages?:
-    | {
-        title?: string | null;
-        description?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  benefits?: {
+    sectionTitle?: string | null;
+    benefitsList?:
+      | {
+          title?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  advantages?: {
+    sectionTitle?: string | null;
+    advantageList?:
+      | {
+          title?: string | null;
+          description?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
   features?: {
+    sectionTitle?: string | null;
     description?: string | null;
     images?:
       | {
@@ -410,20 +418,26 @@ export interface Service {
   /**
    * Please upload  at leatsr 4 images
    */
-  inspirationImages?:
-    | {
-        image: number | Media;
-        id?: string | null;
-      }[]
-    | null;
-  testimonials?:
-    | {
-        name?: string | null;
-        image?: (number | null) | Media;
-        testimonial?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  inspirationImages?: {
+    sectionTitle?: string | null;
+    images?:
+      | {
+          image: number | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  testimonials?: {
+    sectionTitle?: string | null;
+    testimonialList?:
+      | {
+          name?: string | null;
+          image?: (number | null) | Media;
+          testimonial?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
   content?:
     | (
         | HeroBlock
@@ -789,6 +803,7 @@ export interface ManyImagesBlockSelect<T extends boolean = true> {
         id?: T;
       };
   backgroundColor?: T;
+  isTopPosition?: T;
   id?: T;
   blockName?: T;
 }
@@ -820,19 +835,30 @@ export interface ServicesSelect<T extends boolean = true> {
   benefits?:
     | T
     | {
-        title?: T;
-        id?: T;
+        sectionTitle?: T;
+        benefitsList?:
+          | T
+          | {
+              title?: T;
+              id?: T;
+            };
       };
   advantages?:
     | T
     | {
-        title?: T;
-        description?: T;
-        id?: T;
+        sectionTitle?: T;
+        advantageList?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              id?: T;
+            };
       };
   features?:
     | T
     | {
+        sectionTitle?: T;
         description?: T;
         images?:
           | T
@@ -850,16 +876,26 @@ export interface ServicesSelect<T extends boolean = true> {
   inspirationImages?:
     | T
     | {
-        image?: T;
-        id?: T;
+        sectionTitle?: T;
+        images?:
+          | T
+          | {
+              image?: T;
+              id?: T;
+            };
       };
   testimonials?:
     | T
     | {
-        name?: T;
-        image?: T;
-        testimonial?: T;
-        id?: T;
+        sectionTitle?: T;
+        testimonialList?:
+          | T
+          | {
+              name?: T;
+              image?: T;
+              testimonial?: T;
+              id?: T;
+            };
       };
   content?:
     | T

@@ -26,5 +26,11 @@ export const manyImages: Block = {
       },
       required: false,
     },
+    {
+      name: 'isTopPosition',
+      type: 'checkbox',
+      label: 'Position at top',
+      defaultValue: false,
+    },
   ],
 }
