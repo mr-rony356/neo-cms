@@ -34,7 +34,7 @@ export const Services: CollectionConfig = {
       admin: {
         description: 'Please upload a logo for the customer',
         position: 'sidebar',
-      }
+      },
     },
 
     {
@@ -69,30 +69,54 @@ export const Services: CollectionConfig = {
     },
     {
       name: 'benefits',
-      type: 'array',
+      type: 'group',
       label: 'Benefits',
       fields: [
         {
-          name: 'title',
+          name: 'sectionTitle',
           type: 'text',
-          label: 'Title',
+          label: 'Section Title',
+        },
+        {
+          name: 'benefitsList',
+          type: 'array',
+          label: 'Benefits List',
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              label: 'Title',
+            },
+          ],
         },
       ],
     },
     {
       name: 'advantages',
-      type: 'array',
+      type: 'group',
       label: 'Advantages',
       fields: [
         {
-          name: 'title',
+          name: 'sectionTitle',
           type: 'text',
-          label: 'Title',
+          label: 'Section Title',
         },
         {
-          name: 'description',
-          type: 'text',
-          label: 'Description',
+          name: 'advantageList',
+          type: 'array',
+          label: 'Advantage List',
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              label: 'Title',
+            },
+            {
+              name: 'description',
+              type: 'text',
+              label: 'Description',
+            },
+          ],
         },
       ],
     },
@@ -101,6 +125,11 @@ export const Services: CollectionConfig = {
       type: 'group',
       label: 'Features',
       fields: [
+        {
+          name: 'sectionTitle',
+          type: 'text',
+          label: 'Section Title',
+        },
         {
           name: 'description',
           type: 'text',
@@ -137,40 +166,65 @@ export const Services: CollectionConfig = {
     },
     {
       name: 'inspirationImages',
-      type: 'array',
+      type: 'group',
       label: 'Inspiration Images',
       admin: {
         description: 'Please upload  at leatsr 4 images',
       },
       fields: [
         {
-          name: 'image',
-          type: 'upload',
-          relationTo: 'media',
-          label: 'Image',
-          required: true,
+          name: 'sectionTitle',
+          type: 'text',
+          label: 'Section Title',
+        },
+        {
+          name: 'images',
+          type: 'array',
+          label: 'Images',
+          fields: [
+            {
+              name: 'image',
+              type: 'upload',
+              relationTo: 'media',
+              label: 'Image',
+              required: true,
+            },
+          ],
         },
       ],
     },
     {
       name: 'testimonials',
-      type: 'array',
+      type: 'group',
       label: 'Testimonials',
       fields: [
         {
-          name: 'name',
+          name: 'sectionTitle',
           type: 'text',
-          label: 'Name',
+          label: 'Section Title',
         },
         {
-          name: 'image',
-          type: 'upload',
-          relationTo: 'media',
-          label: 'Image',
-        },
-        {
-          name: 'testimonial',
-          type: 'text',
+          name: 'testimonialList',
+          type: 'array',
+          label: 'Testimonial List',
+          fields: [
+            {
+              name: 'name',
+              type: 'text',
+              label: 'Name',
+            },
+            {
+              name: 'image',
+              type: 'upload',
+              relationTo: 'media',
+              label: 'Image',
+            },
+            {
+              name: 'testimonial',
+              type: 'text',
+              label: 'Testimonial',
+            },
+          ],
         },
       ],
     },
